@@ -1,21 +1,29 @@
-const findTheOldest = function(people) {
-    let name = ''
+const findTheOldest = (people) => {
     const d = new Date()
+
     for(let i=0;i<people.length;i++) {
         if(typeof(people[i].yearOfDeath) == 'undefined') {
             people[i].yearOfDeath = d.getFullYear()
         }
-        if(i==people.length-1){
-            break
-        }else{
-            const a = people[i].yearOfDeath - people[i].yearOfBirth
-            const b = people[i+1].yearOfDeath - people[i+1].yearOfBirth
-            if(a>b) {
-                name = people[i]
-            }
+    }
+
+    const a = people[0].yearOfDeath - people[0].yearOfBirth
+    const b = people[1].yearOfDeath - people[1].yearOfBirth
+    const c = people[2].yearOfDeath - people[2].yearOfBirth
+
+    if(a>b) {
+        if(a>c) {
+            return people[0]
+        }else {
+            return people[2]
+        }
+    }else {
+        if(b>c) {
+            return people[1]
+        }else {
+            return people[2]
         }
     }
-    return name
 };
 
 // Do not edit below this line
